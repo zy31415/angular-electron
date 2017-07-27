@@ -1,3 +1,6 @@
+// import bootstrap locally. You can also import it globally at styles.scss.
+@import '../../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
 .container {
   height: 100%;
   display: flex;

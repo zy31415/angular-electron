@@ -21,6 +21,13 @@ const isProd = (process.env.NODE_ENV === 'production');
 function getPlugins() {
   var plugins = [];
 
+  // To automatically load jquery we can simply point both variables it exposes to the corresponding node module
+  plugins.push(new webpack.ProvidePlugin({
+    $: "jquery",
+    jQuery: "jquery",
+    jquery: "jquery"
+  }));
+
   // Always expose NODE_ENV to webpack, you can now use `process.env.NODE_ENV`
   // inside your code for any environment checks; UglifyJS will automatically
   // drop any unreachable code.
@@ -207,7 +214,8 @@ module.exports = {
     ],
     "aliasFields": [],
     "alias": { // WORKAROUND See. angular-cli/issues/5433
-      "environments": isProd ? path.resolve(__dirname, 'src/environments/index.prod.ts') : path.resolve(__dirname, 'src/environments/index.ts')
+      "environments": isProd ? path.resolve(__dirname, 'src/environments/index.prod.ts') : path.resolve(__dirname, 'src/environments/index.ts'),
+      jquery: "jquery/src/jquery"
     },
     "modules": [
       "./node_modules"
